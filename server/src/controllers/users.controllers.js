@@ -1,6 +1,7 @@
 
 const usersControl = {}
 
+const Users = require('../models/users')
 const Users = require ('../models/users')
 
 usersControl.getUsers = async (req, res) => {
@@ -14,16 +15,16 @@ usersControl.createUsers = async(req, res) => {
     
     res.send({message: 'User Created'})
 }
-usersControl.getUser = (req, res) => {
+usersControl.getUser = async (req, res) => {
     console.log(req.params)
     Users.findOne({_id: req.params.id})
     res.send ('getting one user')
 }
-usersControl.editeUsers = (req, res) => {
-
+usersControl.editeUsers = async (req, res) => {
+    users.findByIdAndUpdate(req.params.id, req.body)
 }
-usersControl.deleteUsers = (req, res) => {
-
+usersControl.deleteUsers = async (req, res) => {
+   const user = await Users.findByIdAndDelete(req.params.id)
 }
 
 
